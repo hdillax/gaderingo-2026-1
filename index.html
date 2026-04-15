@@ -329,26 +329,16 @@
             btn.classList.remove('text-amber-700');
         }
 
-        // Dados completos refletindo fielmente a Aba 1 da planilha original
+        // Dados filtrados apenas com as 10 rodadas oficiais
         const fullScheduleData = [
-            { id: 1, date: "10/04/2026", dia: "Sexta", hora: "19h30", mod: "-", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "NÃO", le: "SIM", jd: "Não", vf: "-", th: "-" },
-            { id: 2, date: "12/04/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Não", p: "SIM", l: "NÃO", le: "Não", jd: "-", vf: "-", th: "-" },
             { id: 1, date: "17/04/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
-            { id: 4, date: "24/04/2026", dia: "Sexta", hora: "19h30", mod: "-", obs: "Sim", j: "Sim", a: "Sim", dl: "NÃO", p: "Não", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
-            { id: 5, date: "26/04/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "NÃO", dl: "Sim", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
-            { id: 6, date: "01/05/2026", dia: "Sexta", hora: "14h", mod: "Feriado", obs: "Sim", j: "Sim", a: "Sim", dl: "NÃO", p: "Não", l: "SIM", le: "NÃO", jd: "Não", vf: "-", th: "-" },
             { id: 2, date: "08/05/2026", dia: "Sexta", hora: "19h30", mod: "Draft pick 1", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "Não", jd: "SIM", vf: "Sim", th: "-" },
             { id: 3, date: "15/05/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "Não", jd: "SIM", vf: "Sim", th: "-" },
-            { id: 9, date: "17/05/2026", dia: "Domingo", hora: "14h", mod: "-", obs: "Sim", j: "Sim", a: "Não", dl: "Sim", p: "Sim", l: "SIM", le: "NÃO", jd: "Não", vf: "-", th: "-" },
             { id: 4, date: "22/05/2026", dia: "Sexta", hora: "19h30", mod: "Draft - 6B", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
             { id: 5, date: "29/05/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
-            { id: 12, date: "14/06/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Não", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
             { id: 6, date: "19/06/2026", dia: "Sexta", hora: "19h30", mod: "Draft pick 1", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
-            { id: 14, date: "21/06/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Sim", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
             { id: 7, date: "26/06/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
             { id: 8, date: "03/07/2026", dia: "Sexta", hora: "19h30", mod: "Draft - 6B", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
-            { id: 17, date: "10/07/2026", dia: "Sexta", hora: "19h30", mod: "Sim", obs: "Sim", j: "Sim", a: "NÃO", dl: "Não", p: "SIM", l: "SIM", le: "Não", jd: "-", vf: "-", th: "-" },
-            { id: 18, date: "12/07/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "NÃO", dl: "Sim", p: "SIM", l: "NÃO", le: "Não", jd: "-", vf: "-", th: "-" },
             { id: 9, date: "17/07/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
             { id: 10, date: "24/07/2026", dia: "Sexta", hora: "19h30", mod: "Draft / Grande Final", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "Sim", th: "-" }
         ];
