@@ -65,9 +65,9 @@
     <main class="max-w-6xl mx-auto px-4 py-8">
         
         <section id="sec-calendario" class="block">
-            <h1 class="text-3xl font-bold text-stone-900 mb-4">Calendário de Rodadas</h1>
+            <h1 class="text-3xl font-bold text-stone-900 mb-4">Calendário e Disponibilidade</h1>
             <p class="text-stone-600 mb-8 max-w-3xl leading-relaxed">
-                Nesta seção, você visualiza a distribuição das rodadas do campeonato, os formatos definidos e a expectativa de jogadores presentes (baseado na disponibilidade). O objetivo do torneio é realizar 10 rodadas válidas até a Grande Final. Interaja com o gráfico para ver os detalhes de cada data.
+                Nesta seção, você visualiza a distribuição das rodadas do campeonato, os formatos e a matriz completa de disponibilidade dos jogadores. O objetivo é tentarmos 10 rodadas ao todo.
             </p>
 
             <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 mb-8">
@@ -79,14 +79,23 @@
 
             <div class="bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left">
+                    <table class="w-full text-xs text-left whitespace-nowrap">
                         <thead class="text-xs text-stone-700 uppercase bg-stone-100 border-b border-stone-200">
                             <tr>
-                                <th class="px-6 py-4">Data</th>
-                                <th class="px-6 py-4">Dia</th>
-                                <th class="px-6 py-4">Formato</th>
-                                <th class="px-6 py-4">Horário Limite</th>
-                                <th class="px-6 py-4 text-center">Confirmados</th>
+                                <th class="px-4 py-3">Rodada</th>
+                                <th class="px-4 py-3">Data</th>
+                                <th class="px-4 py-3">Dia</th>
+                                <th class="px-4 py-3">Horário</th>
+                                <th class="px-4 py-3 border-r border-stone-300">Modalidade / Obs</th>
+                                <th class="px-2 py-3 text-center">João</th>
+                                <th class="px-2 py-3 text-center">Ana</th>
+                                <th class="px-2 py-3 text-center">De Lara</th>
+                                <th class="px-2 py-3 text-center">Pedro</th>
+                                <th class="px-2 py-3 text-center">Lima</th>
+                                <th class="px-2 py-3 text-center">Lelê</th>
+                                <th class="px-2 py-3 text-center">Jordan</th>
+                                <th class="px-2 py-3 text-center">VitFig</th>
+                                <th class="px-2 py-3 text-center">Thiago</th>
                             </tr>
                         </thead>
                         <tbody id="scheduleTableBody" class="divide-y divide-stone-200">
@@ -99,10 +108,10 @@
         <section id="sec-formatos" class="hidden">
             <h1 class="text-3xl font-bold text-stone-900 mb-4">Regras por Formato</h1>
             <p class="text-stone-600 mb-8 max-w-3xl leading-relaxed">
-                Explore os parâmetros específicos de cada formato que será jogado no campeonato. Selecione um dos formatos abaixo para entender as limitações de construção de deck, distribuição de jogadores (duplas/trios) e pontos de vida.
+                Explore os parâmetros específicos, limitações de construção de deck e tabelas de pontuação de cada formato.
             </p>
 
-            <div class="flex justify-center space-x-2 mb-8">
+            <div class="flex justify-center space-x-2 mb-8 flex-wrap gap-y-2">
                 <button onclick="showFormat('commander')" id="fmt-commander" class="format-btn active px-6 py-2 rounded-full font-medium transition-colors border border-amber-700 text-amber-700">Commander</button>
                 <button onclick="showFormat('pauper')" id="fmt-pauper" class="format-btn px-6 py-2 rounded-full font-medium transition-colors border border-amber-700 text-amber-700">Pauper</button>
                 <button onclick="showFormat('draft')" id="fmt-draft" class="format-btn px-6 py-2 rounded-full font-medium transition-colors border border-amber-700 text-amber-700">Draft</button>
@@ -112,22 +121,27 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-amber-700">
                         <h3 class="text-xl font-bold text-stone-800 mb-3">&#128736;&#65039; Construção de Deck</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
                             <li><strong>Valor Máximo:</strong> R$ 500,00 (versão mais barata na LigaMagic).</li>
-                            <li><strong>Bracket Máximo:</strong> Bracket 2.</li>
-                            <li><strong>Restrições:</strong> Proibido uso de "cartas tutores".</li>
-                            <li><strong>Auditoria:</strong> Todos os decks devem estar planilhados. Print do preço mais barato é exigido se necessário.</li>
-                            <li><strong>Transferências:</strong> Janela exclusiva na pré-temporada.</li>
-                            <li><strong>Trocas:</strong> 5 cartas por 5 comuns até 12/10 sem custo. Trocas extras geram penalidades de -1 ou mais pontos na tabela.</li>
+                            <li><strong>Bracket Máximo:</strong> Bracket 2. Sem "cartas tutores".</li>
+                            <li><strong>Auditoria:</strong> Todos os decks devem estar planilhados. Print exigido se necessário.</li>
+                            <li><strong>Trocas sem penalidade:</strong> Trocar 5 cartas por 5 comuns até a rodada de 12/10/25 (única vez).</li>
+                            <li><strong>Trocas com penalidade:</strong> Trocar qualquer carta por até 3C, 2 Incomuns, 1 Rara/Mítica = <strong>-1 ponto</strong> no campeonato. Trocar um segundo conjunto de 6 cartas = <strong>dobra os pontos perdidos (-2 pontos)</strong> e assim por diante. Deve ser comunicado no WhatsApp.</li>
                         </ul>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-stone-400">
-                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura da Partida</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                            <li><strong>Vida Inicial:</strong> 40 por jogador / 80 para a dupla (Vida Compartilhada).</li>
-                            <li><strong>Eliminação:</strong> Se apenas um player cair (mill, dano, carta de derrota), <strong>a dupla inteira perde</strong> automaticamente.</li>
-                            <li><strong>Equipes:</strong> Sorteio da posição na mesa define as duplas/trios.</li>
-                            <li><strong>Defesa:</strong> Não pode defender com criaturas para a sua dupla ou trio.</li>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura e Pontuação</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+                            <li><strong>Vida Inicial:</strong> 40 por jogador / 80 para a dupla (Compartilhada). Se um cair, a dupla perde. Não pode defender aliado.</li>
+                            <li><strong>Pontuação Individual:</strong> Participação (1 pt), Vitória (2 pts), Inimigo morto (1 pt), Aliado vivo (1 pt).</li>
+                            <li><strong>Pontuação de Eliminação (Duplas):</strong>
+                                <ul class="list-circle pl-5 mt-1 text-stone-500">
+                                    <li>Primeira dupla eliminada = 0 pontos</li>
+                                    <li>Segunda dupla eliminada = 1 ponto</li>
+                                    <li>Terceira dupla eliminada = 3 pontos</li>
+                                    <li>Dupla vencedora = 5 pontos</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -137,21 +151,19 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-stone-800">
                         <h3 class="text-xl font-bold text-stone-800 mb-3">&#128736;&#65039; Construção de Deck</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                            <li><strong>Valor Máximo:</strong> R$ 50,00 (versão NM, PT-BR ou ENG mais barata).</li>
-                            <li><strong>Terrenos:</strong> Terrenos (básicos ou não) <strong>não entram</strong> no valor limite.</li>
-                            <li><strong>Formato:</strong> Apenas comuns (seguindo Banlist Oficial WotC). 60 cartas main + 15 sideboard.</li>
-                            <li><strong>Punições:</strong> Atraso na lista = -3 pontos. Modificação pós-início = -1 ponto por carta alterada.</li>
-                            <li><strong>Terrenos Básicos:</strong> Podem ser alterados livremente entre partidas. Proibido proxies.</li>
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+                            <li><strong>Valor Máximo:</strong> R$ 50,00 (versão NM, PT-BR ou ENG mais barata). Terrenos não entram na conta.</li>
+                            <li><strong>Formato:</strong> Apenas comuns (Banlist WotC). 60 main + 15 sideboard. Proibido proxies.</li>
+                            <li><strong>Punições:</strong> Atraso na lista no WhatsApp (até 17/04 12h) = -3 pontos. Modificação pós-início = -1 ponto por carta. Terrenos básicos podem ser alterados livremente.</li>
                         </ul>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-stone-400">
-                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura da Partida</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                            <li><strong>Vida Inicial:</strong> 20 por jogador.</li>
-                            <li><strong>Vida Individual:</strong> Sem vida compartilhada. Se um parceiro morrer, o resto da dupla/trio continua no jogo (diferente do Commander).</li>
-                            <li><strong>Formações:</strong> 10 jg: Pentagrama de duplas | 9 jg: 3 trios | 8 jg: 4 duplas | 7 jg: Heptagrama com inimigo oculto.</li>
-                            <li><strong>Defesa:</strong> Não pode defender com criaturas para a sua dupla ou trio.</li>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura e Pontuação</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+                            <li><strong>Vida Inicial:</strong> 20 por jogador. Sem vida compartilhada.</li>
+                            <li><strong>Formações:</strong> 10 jg: Pentagrama | 9 jg: 3 trios | 8 jg: 4 duplas | 7 jg: Heptagrama.</li>
+                            <li><strong>Pontuação Individual (Free for all):</strong> 3 pontos por vitória, 2 pontos para o segundo lugar. (+1 ponto de participação).</li>
+                            <li><strong>Pontuação Equipes:</strong> Use a calculadora na aba respectiva para os multiplicadores de sobrevivência.</li>
                         </ul>
                     </div>
                 </div>
@@ -161,19 +173,18 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-emerald-700">
                         <h3 class="text-xl font-bold text-stone-800 mb-3">&#128230; Logística do Draft</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                            <li><strong>Modalidade:</strong> Revezamento entre Draft Pick 1 usual e Modelo Pré-Release (6 boosters selados).</li>
-                            <li><strong>Tempo de Montagem:</strong> Máximo de 1 hora no formato de 6 boosters. Proibido trocar cartas.</li>
-                            <li><strong>Grande Final:</strong> Duas rodadas (Draft seguido de Commander), com valores de pontuação dobrados e traje passeio completo (terno) obrigatório.</li>
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+                            <li><strong>Modalidade:</strong> Revezamento entre Draft Pick 1 usual e Pré-Release (6 boosters, 1h montagem).</li>
+                            <li><strong>Grande Final (Rodada 10):</strong> 1 Draft + 1 Commander. Pontuações dobradas. Traje passeio completo obrigatório.</li>
                         </ul>
                     </div>
                     <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 border-l-4 border-l-stone-400">
-                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura da Partida</h3>
-                        <ul class="list-disc pl-5 space-y-2 text-stone-600">
-                            <li><strong>Vida Inicial:</strong> 20 por jogador, separados (não compartilhada).</li>
-                            <li><strong>Deathmatch:</strong> Após 1 hora de jogo, ativa o Deathmatch. Todo upkeep, jogador perde 1 de vida (dano aumenta +1 a cada rodada sucessiva da mesa).</li>
-                            <li><strong>Formações:</strong> Idênticas ao Pauper (Pentagrama, Trios, etc).</li>
-                            <li><strong>Defesa:</strong> Não pode defender para a dupla/trio. Pode distribuir dano livremente.</li>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">&#9876;&#65039; Estrutura e Pontuação</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+                            <li><strong>Vida Inicial:</strong> 20 por jogador, sem vida compartilhada.</li>
+                            <li><strong>Deathmatch:</strong> Após 1 hora, perde 1 de vida a cada upkeep (aumenta +1 a cada rodada da mesa).</li>
+                            <li><strong>Pontuação Individual (Free for all):</strong> 3 pontos por vitória, 2 pontos para o segundo lugar. (+1 pt part.).</li>
+                            <li><strong>Pontuação Equipes:</strong> Use a calculadora na aba respectiva para os multiplicadores de sobrevivência.</li>
                         </ul>
                     </div>
                 </div>
@@ -182,9 +193,9 @@
         </section>
 
         <section id="sec-calculadora" class="hidden">
-            <h1 class="text-3xl font-bold text-stone-900 mb-4">Calculadora de Pontos (Pauper/Draft)</h1>
+            <h1 class="text-3xl font-bold text-stone-900 mb-4">Calculadora de Pontos de Equipe (Pauper/Draft)</h1>
             <p class="text-stone-600 mb-8 max-w-3xl leading-relaxed">
-                As regras de pontuação para equipes no Pauper e Draft possuem modificadores dinâmicos baseados em sobrevivência e perdas de aliados. Selecione sua configuração abaixo para calcular a pontuação exata do seu time nesta rodada. (Para Commander: Vitória = 5, Inimigo Morto = 1, Aliado Vivo = 1, Participação = 1).
+                Calcule a pontuação complexa de <strong>Duplas e Trios</strong>. (Atenção: Para partidas Free-For-All e Commander, consulte as regras fixas na aba de Formatos).
             </p>
 
             <div class="bg-white p-8 rounded-xl shadow-sm border border-stone-200 max-w-3xl mx-auto">
@@ -240,7 +251,7 @@
                         Cálculo: Vitória (6)
                     </p>
                     <p class="text-xs text-stone-500 mt-1 italic text-center">
-                        *Lembre-se de adicionar +1 Ponto Fixo de Participação individualmente.
+                        *A pontuação mínima possível é 0.
                     </p>
                 </div>
             </div>
@@ -318,30 +329,66 @@
             btn.classList.remove('text-amber-700');
         }
 
-        const scheduleData = [
-            { id: "1", date: "17/04/2026", form: "Pauper", limit: "19h30", conf: 8 },
-            { id: "2", date: "08/05/2026", form: "Draft pick 1", limit: "19h30", conf: 7 },
-            { id: "3", date: "15/05/2026", form: "Pauper", limit: "19h30", conf: 7 },
-            { id: "4", date: "22/05/2026", form: "Draft (6B)", limit: "19h30", conf: 8 },
-            { id: "5", date: "29/05/2026", form: "Pauper", limit: "19h30", conf: 8 },
-            { id: "6", date: "19/06/2026", form: "Draft pick 1", limit: "19h30", conf: 8 },
-            { id: "7", date: "26/06/2026", form: "Pauper", limit: "19h30", conf: 8 },
-            { id: "8", date: "03/07/2026", form: "Draft (6B)", limit: "19h30", conf: 8 },
-            { id: "9", date: "17/07/2026", form: "Pauper", limit: "19h30", conf: 8 },
-            { id: "10", date: "24/07/2026", form: "Draft pick 1 (Final)", limit: "19h30", conf: 8 }
+        // Dados completos refletindo fielmente a Aba 1 da planilha original
+        const fullScheduleData = [
+            { id: 1, date: "10/04/2026", dia: "Sexta", hora: "19h30", mod: "-", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "NÃO", le: "SIM", jd: "Não", vf: "-", th: "-" },
+            { id: 2, date: "12/04/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Não", p: "SIM", l: "NÃO", le: "Não", jd: "-", vf: "-", th: "-" },
+            { id: 1, date: "17/04/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
+            { id: 4, date: "24/04/2026", dia: "Sexta", hora: "19h30", mod: "-", obs: "Sim", j: "Sim", a: "Sim", dl: "NÃO", p: "Não", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
+            { id: 5, date: "26/04/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "NÃO", dl: "Sim", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
+            { id: 6, date: "01/05/2026", dia: "Sexta", hora: "14h", mod: "Feriado", obs: "Sim", j: "Sim", a: "Sim", dl: "NÃO", p: "Não", l: "SIM", le: "NÃO", jd: "Não", vf: "-", th: "-" },
+            { id: 2, date: "08/05/2026", dia: "Sexta", hora: "19h30", mod: "Draft pick 1", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "Não", jd: "SIM", vf: "Sim", th: "-" },
+            { id: 3, date: "15/05/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "Não", jd: "SIM", vf: "Sim", th: "-" },
+            { id: 9, date: "17/05/2026", dia: "Domingo", hora: "14h", mod: "-", obs: "Sim", j: "Sim", a: "Não", dl: "Sim", p: "Sim", l: "SIM", le: "NÃO", jd: "Não", vf: "-", th: "-" },
+            { id: 4, date: "22/05/2026", dia: "Sexta", hora: "19h30", mod: "Draft - 6B", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
+            { id: 5, date: "29/05/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "-", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "Sim", le: "SIM", jd: "SIM", vf: "Sim", th: "-" },
+            { id: 12, date: "14/06/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Não", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
+            { id: 6, date: "19/06/2026", dia: "Sexta", hora: "19h30", mod: "Draft pick 1", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
+            { id: 14, date: "21/06/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "Sim", dl: "Sim", p: "SIM", l: "NÃO", le: "Sim", jd: "-", vf: "-", th: "-" },
+            { id: 7, date: "26/06/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
+            { id: 8, date: "03/07/2026", dia: "Sexta", hora: "19h30", mod: "Draft - 6B", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
+            { id: 17, date: "10/07/2026", dia: "Sexta", hora: "19h30", mod: "Sim", obs: "Sim", j: "Sim", a: "NÃO", dl: "Não", p: "SIM", l: "SIM", le: "Não", jd: "-", vf: "-", th: "-" },
+            { id: 18, date: "12/07/2026", dia: "Domingo", hora: "14h", mod: "Sim", obs: "Sim", j: "Não", a: "NÃO", dl: "Sim", p: "SIM", l: "NÃO", le: "Não", jd: "-", vf: "-", th: "-" },
+            { id: 9, date: "17/07/2026", dia: "Sexta", hora: "19h30", mod: "Pauper", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "-", th: "-" },
+            { id: 10, date: "24/07/2026", dia: "Sexta", hora: "19h30", mod: "Draft / Grande Final", obs: "Sim", j: "Sim", a: "Sim", dl: "Sim", p: "Sim", l: "SIM", le: "SIM", jd: "Sim", vf: "Sim", th: "-" }
         ];
+
+        function getStyle(val) {
+            let v = val.toLowerCase();
+            if(v === 'sim') return 'text-green-600 font-bold';
+            if(v === 'não' || v === 'nao') return 'text-red-500';
+            return 'text-stone-400';
+        }
+
+        function calculateConfirmed(row) {
+            let count = 0;
+            const players = [row.j, row.a, row.dl, row.p, row.l, row.le, row.jd, row.vf, row.th];
+            players.forEach(p => {
+                if(p.toLowerCase() === 'sim') count++;
+            });
+            return count;
+        }
 
         function renderTable() {
             const tbody = document.getElementById('scheduleTableBody');
             let html = '';
-            scheduleData.forEach(row => {
+            fullScheduleData.forEach(row => {
                 html += `
                     <tr class="bg-white hover:bg-stone-50 transition-colors">
-                        <td class="px-6 py-4 font-medium">${row.date}</td>
-                        <td class="px-6 py-4">Sexta-feira</td>
-                        <td class="px-6 py-4 text-amber-700 font-semibold">${row.form}</td>
-                        <td class="px-6 py-4 text-stone-500">${row.limit}</td>
-                        <td class="px-6 py-4 text-center font-bold text-stone-800">${row.conf}</td>
+                        <td class="px-4 py-2 font-medium">${row.id}</td>
+                        <td class="px-4 py-2">${row.date}</td>
+                        <td class="px-4 py-2">${row.dia}</td>
+                        <td class="px-4 py-2 text-stone-500">${row.hora}</td>
+                        <td class="px-4 py-2 border-r border-stone-300 text-stone-700">${row.mod} ${row.obs !== '-' && row.obs !== 'Sim' ? '('+row.obs+')' : ''}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.j)}">${row.j}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.a)}">${row.a}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.dl)}">${row.dl}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.p)}">${row.p}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.l)}">${row.l}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.le)}">${row.le}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.jd)}">${row.jd}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.vf)}">${row.vf}</td>
+                        <td class="px-2 py-2 text-center ${getStyle(row.th)}">${row.th}</td>
                     </tr>
                 `;
             });
@@ -350,8 +397,8 @@
 
         function renderChart() {
             const ctx = document.getElementById('attendanceChart').getContext('2d');
-            const labels = scheduleData.map(d => `Rodada ${d.id}`);
-            const dataPoints = scheduleData.map(d => d.conf);
+            const labels = fullScheduleData.map(d => `${d.date}`);
+            const dataPoints = fullScheduleData.map(d => calculateConfirmed(d));
 
             new Chart(ctx, {
                 type: 'bar',
@@ -363,7 +410,7 @@
                         backgroundColor: '#b45309',
                         borderRadius: 4,
                         barThickness: 'flex',
-                        maxBarThickness: 40
+                        maxBarThickness: 30
                     }]
                 },
                 options: {
@@ -380,7 +427,7 @@
                             callbacks: {
                                 title: (context) => {
                                     let idx = context[0].dataIndex;
-                                    return `${scheduleData[idx].date} - ${scheduleData[idx].form}`;
+                                    return `Rodada ${fullScheduleData[idx].id} - ${fullScheduleData[idx].date}`;
                                 },
                                 label: (context) => {
                                     return `${context.raw} Jogadores Confirmados`;
