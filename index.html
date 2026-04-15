@@ -232,7 +232,7 @@
                         <label for="calc-dupla-morta" class="ml-2 text-sm font-medium text-stone-900">Sua dupla morreu? (Divisor /2)</label>
                     </div>
 
-                    <div>
+                    <div id="calc-aliados-container">
                         <label class="block text-sm font-semibold text-stone-700 mb-2">Aliados Mortos (Outras equipes)</label>
                         <select id="calc-aliados" class="w-full bg-stone-50 border border-stone-300 text-stone-900 text-sm rounded-lg focus:ring-amber-500 focus:border-amber-500 block p-2.5">
                             <option value="0">Nenhum aliado morto</option>
@@ -458,6 +458,7 @@
         const calcVivos = document.getElementById('calc-vivos');
         const calcDuplaMortaDiv = document.getElementById('calc-dupla-morta-container');
         const calcDuplaMorta = document.getElementById('calc-dupla-morta');
+        const calcAliadosDiv = document.getElementById('calc-aliados-container');
         const calcAliados = document.getElementById('calc-aliados');
         
         const outTotal = document.getElementById('calc-total');
@@ -470,12 +471,15 @@
             if (isTrio && !isEliminado) {
                 calcVivosDiv.classList.remove('hidden');
                 calcDuplaMortaDiv.classList.add('hidden');
+                calcAliadosDiv.classList.add('hidden');
             } else if (!isTrio && !isEliminado) {
                 calcVivosDiv.classList.add('hidden');
                 calcDuplaMortaDiv.classList.remove('hidden');
+                calcAliadosDiv.classList.remove('hidden');
             } else {
                 calcVivosDiv.classList.add('hidden');
                 calcDuplaMortaDiv.classList.add('hidden');
+                calcAliadosDiv.classList.add('hidden');
             }
 
             calculateScore();
@@ -526,11 +530,6 @@
                 
                 let current = basePoints * multiplier;
                 strLogica = `Base: ${basePoints} → Sobreviventes (x${vivos}/3) = ${formatDecimal(current)}`;
-
-                if (aliadosMortos > 0) {
-                    current = current - aliadosMortos;
-                    strLogica += ` → ${aliadosMortos} Aliados mortos (-${aliadosMortos}) = ${formatDecimal(current)}`;
-                }
 
                 finalPoints = Math.max(0, current);
                 strLogica = `Cálculo: ` + strLogica;
